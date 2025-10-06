@@ -19,6 +19,12 @@ class Human1 implements Comparable<Human1>{
     public int compareTo(Human that){
         return this.weight>that.weight?1:-1;
     }
+
+    @Override
+    public int compareTo(Human1 o) {
+        // TODO Auto-generated method stub
+        throw new UnsupportedOperationException("Unimplemented method 'compareTo'");
+    }
 }
 
 public class ComparableClass {
