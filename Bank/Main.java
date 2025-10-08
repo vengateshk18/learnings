@@ -4,8 +4,8 @@ import java.util.*;
 import java.util.ArrayList;
 import java.util.Random;
 
-
-abstract class Card{
+// Single Responsibility Principle
+abstract class Card{ // Liskov substituitional principle
     public int cardNumber;
     public Account account;
     public int pin;
@@ -15,7 +15,7 @@ abstract class Card{
 }
 
 
-class CreditCard extends Card{
+class CreditCard extends Card{ // Open and Close Principle
 
    public  CreditCard(int cardNumber, Account account, int pin){
         this.cardNumber=cardNumber;
@@ -45,7 +45,7 @@ class DebitCard extends Card{
 }
 
 class Printer{
-    public void print(Account ac){
+    public void print(Account ac){ // Association relationship
         System.out.println(ac.account_number+" "+ac.balance);
     }
 }
@@ -57,7 +57,7 @@ class Account{
     public String user_name;
     public String email;
     public int balance;
-    public Card card;
+    public Card card; // composition relationship
 
     Account(String userName,String email,int balance){
         this.account_number=account_number_counter++;
@@ -99,7 +99,7 @@ class Account{
         this.card.isBlocked=false;
     }
 }
-
+// Interface Segragation Principle
 interface Payment{
     public void pay(Account ac, Integer amount, Account receiver);
 }
@@ -123,7 +123,7 @@ class DebitCardPayment implements Payment{
 class BankService{
 
     List<Account> accounts;
-    Printer printer;
+    Printer printer; // aggregation relationship
 
     BankService(){
         this.accounts=new ArrayList<>();
@@ -152,7 +152,7 @@ class BankService{
         printer.print(account);
     }
 
-    public void makePayment(Payment payment, String sender, String receiver, Integer amount){
+    public void makePayment(Payment payment, String sender, String receiver, Integer amount){ // Dependency Inversion Principle
         Account senderAccount=getAccount(sender);
         Account receiverAccount=getAccount(receiver);
 

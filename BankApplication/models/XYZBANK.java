@@ -80,6 +80,7 @@ public class XYZBANK {
             Account account=getAccount(cardNumber);
             double cashback=(amount/100);
             account.balance+=cashback;
+            account.balance-=amount;
             Transaction transaction=new Transaction(account, TransactionType.SWEEP, amount, 0.0);
             account.addTransaction(transaction);
             return "USD: "+amount+" Sweeped In Card "+cardNumber;

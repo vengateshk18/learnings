@@ -48,4 +48,9 @@ public class Account {
         this.transactions.add(transaction);
     }
 
+    public String toString(){
+        return email+" balance: "+balance;
+        
+    }
 
+}
