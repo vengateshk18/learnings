@@ -42,9 +42,11 @@ public class City {
     public void setName(String name){
         this.cityName=name;
     }
-
-
     public void addHotel(Hotel hotel){
         this.hotels.add(hotel);
+    }
+
+    public String toString(){
+        return "City Name: "+cityName+" City Description: "+cityDescription;
     }
 }

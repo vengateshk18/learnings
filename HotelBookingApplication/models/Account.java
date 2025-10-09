@@ -6,11 +6,13 @@ public class Account {
     private String email;
     private String password;
     private String userName;
+    private String fullName;
     
     public Account(String email, String password, String name){
         this.ID=this.IdCounter++;
         this.email=email;
         this.password=password;
+        this.fullName=name;
         this.userName=generateUserName(this.email,this.ID);
     }
 
@@ -36,7 +38,11 @@ public class Account {
         return this.password;
     }
 
+    public String getFullName(){
+        return this.fullName;
+    }
+
     public String toString(){
-        return "Id: "+this.ID+" Email: "+this.email+" Password: "+this.password+" UserName: "+this.userName;
+        return "Id: "+this.ID+" Email: "+this.email+" Password: "+this.password+" UserName: "+this.userName+" fullName"+fullName;
     }
 }

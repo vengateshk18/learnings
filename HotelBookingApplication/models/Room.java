@@ -38,8 +38,16 @@ public class Room {
         this.isBooked=status;
     }
 
+    public void setPrice(double price){
+        this.price=price;
+    }
+
     public RoomType getRoomType(){
         return this.roomType;
+    }
+
+    public String toString(){
+        return "Room ID: "+ID+" Is Booked: "+isBooked+" RoomType: "+roomType+" Price: "+price+" \n Hotel: "+hotel; 
     }
     
 }

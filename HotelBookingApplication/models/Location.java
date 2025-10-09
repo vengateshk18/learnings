@@ -30,6 +30,10 @@ public class Location {
         return this.pincode;
     }
 
+    public String toString(){
+        return "City: "+this.city+" Area: "+this.area+" Pincode: "+pincode;
+    }
+
     public boolean checkIfLocationMatches(String location){
         String currLocation=this.area+" "+this.city+" "+pincode;
         String currLocationInWords[]=currLocation.split(" ");

@@ -16,6 +16,7 @@ public class Customer {
         this.aadhar=aaadhar;
         this.bookings=new ArrayList<>();
         this.account=account;
+        this.bankAccount=bankAccount;
     }
 
     public Customer(Account account,BankAccount bankAccount){
@@ -45,5 +46,8 @@ public class Customer {
         return this.bankAccount;
     }
 
+    public String toString(){
+        return "Customer ID: "+ID+" \n Account: "+account+" \n Aadhar: "+aadhar+" \n Bank Account"+bankAccount;
+    }
 }
 

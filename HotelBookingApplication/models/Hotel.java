@@ -1,6 +1,9 @@
 package HotelBookingApplication.models;
 
+import java.util.ArrayList;
 import java.util.List;
+
+import HotelBookingApplication.constants.RoomType;
 
 public  class Hotel{
     private int ID;
@@ -19,6 +22,8 @@ public  class Hotel{
         this.account=account;
         this.bankAccount=bankAccount;
         this.ratings=1;
+        this.location=location;
+        this.rooms=new ArrayList<>();
     }
     public Hotel(Account account,String name, int GSTNumber, Location location, BankAccount bankAccount){
         this.ID=IdCounter++;
@@ -27,6 +32,8 @@ public  class Hotel{
         this.GSTNumber=GSTNumber;
         this.bankAccount=bankAccount;
         this.ratings=1;
+        this.location=location;
+        this.rooms=new ArrayList<>();
     }
 
     public int getId(){
@@ -42,11 +49,15 @@ public  class Hotel{
     }
 
     public Account getAccount(){
-        return this.getAccount();
+        return this.account;
     }
 
     public String getLinkedEmail(){
         return this.account.getEmail();
+    }
+
+    public void addRoom(Room room){
+        this.rooms.add(room);
     }
 
     public String getLinkedPassword(){
@@ -67,6 +78,28 @@ public  class Hotel{
 
     public double getRatings(){
         return this.ratings;
+    }
+
+    public String toString(){
+        return "Hotel Id: "+ID+" Hotel Name: "+this.name+" \n Account: "+account+" \n GST Number: "+getGstNumber()+" \n Location: "+location+" \n Bank Account: "+bankAccount+" Rating: \n"+ratings;
+    }
+
+    public double getPriceForRoomType(RoomType type){
+        for(Room room:this.rooms){
+            if(room.getRoomType()==type){
+                return room.getPrice();
+            }
+        }
+        return -1;
+    }
+
+    public Room getAvailableRoomBasedOnType(RoomType type){
+        for(Room room:this.rooms){
+            if(room.getRoomType()==type && room.getBookingStatus()==false){
+                return room;
+            }
+        }
+        return null;
     }
 
 }

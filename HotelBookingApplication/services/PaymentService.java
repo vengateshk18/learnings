@@ -15,30 +15,31 @@ public class PaymentService {
         this.dataBase=dataBase;
     }
 
-    public boolean initiatePayment(Customer customer, Hotel hotel, Payment payment,double amount){
+    public PaymentInvoice initiatePayment(Customer customer, Hotel hotel, Payment payment,double amount){
         BankAccount customerBankAccount=customer.getBankAccount();
         BankAccount hotelBankAccount=hotel.getBankAccount();
         Payment paymentMethod=payment;
         if(payment.pay(amount, hotel)){
             PaymentInvoice invoice=new PaymentInvoice(customerBankAccount, hotelBankAccount, amount,payment.getPaymentType(),PaymentStatus.SUCCESS);
             this.dataBase.paymentRepositery.addObject(invoice.getId(), invoice);
-            return true;
+            return invoice;
         }
         PaymentInvoice invoice=new PaymentInvoice(customerBankAccount, hotelBankAccount, amount,payment.getPaymentType(),PaymentStatus.FAILED);
         this.dataBase.paymentRepositery.addObject(invoice.getId(), invoice);
-        return false;
+        return invoice;
     }
 
-    public boolean refundAmount(Customer customer, Hotel hotel, Payment payment,double amount){
+    public PaymentInvoice refundAmount(Customer customer, Hotel hotel, Payment payment,double amount){
         BankAccount customerBankAccount=customer.getBankAccount();
         BankAccount hotelBankAccount=hotel.getBankAccount();
         Payment paymentMethod=payment;
         if(payment.refund(amount, hotel)){
             PaymentInvoice invoice=new PaymentInvoice(hotelBankAccount, customerBankAccount, amount,payment.getPaymentType(),PaymentStatus.REFUNDED);
             this.dataBase.paymentRepositery.addObject(invoice.getId(), invoice);
+            return invoice;
         }
         PaymentInvoice invoice=new PaymentInvoice(customerBankAccount, hotelBankAccount, amount,payment.getPaymentType(),PaymentStatus.FAILED);
         this.dataBase.paymentRepositery.addObject(invoice.getId(), invoice);
-        return false;
+        return invoice;
     }
 }

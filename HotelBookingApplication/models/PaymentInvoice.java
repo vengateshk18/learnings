@@ -19,10 +19,10 @@ public class PaymentInvoice {
 
     public PaymentInvoice(BankAccount sender, BankAccount receiver, double amount, PaymentType type, PaymentStatus status){
         this.ID=IdCounter++;
-        this.senderName=sender.getAccount().getUsername();
-        this.receiverName=sender.getAccount().getUsername();
-        this.senderAccount=senderAccount;
-        this.receiverAccount=receiverAccount;
+        this.senderName=sender.getAccount().getFullName();
+        this.receiverName=receiver.getAccount().getFullName();
+        this.senderAccount=sender;
+        this.receiverAccount=receiver;
         this.amount=amount;
         this.date=LocalDateTime.now();
         this.type=type;
@@ -34,7 +34,11 @@ public class PaymentInvoice {
         return this.ID;
     }
 
+    public PaymentStatus getStatus(){
+        return this.status;
+    }
+
     public String toString(){
-        return "Id: "+this.ID+" Sender Name: "+this.senderName+" Receiver Name: "+receiverName+" Sender Account: "+senderAccount+" Receiver Account: "+receiverAccount+" Amount: "+amount+" Date Time: "+date+" Payment Type: "+type+" Payment Status: "+status;
+        return "Id: "+this.ID+" \n Sender Name: "+this.senderName+" \n Receiver Name: "+receiverName+" \n Sender Bank Account: "+senderAccount+" \n Receiver Bank Account: "+receiverAccount+" \n Amount: "+amount+" \n Date Time: "+date+" \n Payment Type: "+type+" \n Payment Status: "+status;
     }
 }

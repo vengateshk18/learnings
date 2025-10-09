@@ -18,9 +18,9 @@ public class SessionService {
 
     public String encrypt(String data){
         try{
-            String res=null;
+            String res="";
             for(int value:data.toCharArray()){
-                res+=(char) value+1;
+                res+=(char) (value+1);
             }
             return res;
         }
@@ -29,9 +29,9 @@ public class SessionService {
 
     public String decrypt(String data){
         try{
-            String res=null;
+            String res="";
             for(int value:data.toCharArray()){
-                res+=(char) value-1;
+                res+=(char) (value-1);
             }
             return res;
         }
